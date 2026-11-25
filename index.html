@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deux valent mieux qu'un — La carte au trésor des témoins</title>
+<title>Convocation officielle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Outfit:wght@300;400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
@@ -213,7 +213,7 @@
 /* ============ CONTENU ============ */
 const DAY = new Date(2026, 10, 27, 8, 30);   // vendredi 27 novembre 2026, 8 h 30
 // Codes de déverrouillage (index = numéro d'étape ; 8 = arrivée). Majuscules/accents ignorés.
-const CODES = { 1:"MARCHE", 2:"PROMESSE", 3:"MELI", 4:"SOURIRE", 5:"SAVEUR", 6:"DOUCEUR", 7:"REPOS", 8:"COEUR" };
+const CODES = { 1:"MARCHE", 2:"PROMESSE", 3:["TABLÉE","TABLÉ"], 4:"SOURIRE", 5:"SAVEUR", 6:"DOUCEUR", 7:"REPOS", 8:"COEUR" };
 
 const STEPS = [
   { short:"Départ", emo:"🧭", title:"Le départ", place:"Là où tout commence",
@@ -239,10 +239,10 @@ const STEPS = [
     <p>Il y a plusieurs années, vous vous êtes engagés l'un envers l'autre. Vous avez officialisé cette alliance le <strong>26 mars 2022</strong> par un grand «&nbsp;OUI&nbsp;» mutuel.</p>`,
     defi:`Chacun complète à voix haute, en regardant l'autre dans les yeux&nbsp;:<ul style="margin-top:8px"><li>« Il y a 4 ans, j'ai dit oui parce que… » (5 raisons)</li><li>« Ce que j'ai appris à découvrir chez toi et que j'admire, c'est… »</li><li>« Aujourd'hui, à nouveau, je te promets… »</li></ul>` },
 
-  { short:"Meli", emo:"🍽️", title:"À table !", place:"Étape 3 · Restaurant Meli",
-    html:`<p>Toutes ces émotions, ça creuse&nbsp;! Direction le restaurant Meli.</p>
-    <p>Partager un repas, c'est l'un des plus beaux gestes du quotidien. Et bien connaître l'autre, c'est aussi savoir ce qui lui fait plaisir dans l'assiette.</p>`,
-    defi:"Chacun commande pour l'autre, sans le consulter. Verdict au dessert&nbsp;: alors, est-ce qu'il ou elle vous connaît vraiment&nbsp;?" },
+  { short:"À table", emo:"🍽️", title:"À table !", place:"Étape 3 · La tablée",
+    html:`<div class="verse">« Quand l'heure fut venue, il se mit à table, et les apôtres avec lui. »<cite>Luc 22.14</cite></div>
+    <p>La table est plus qu'un lieu de consommation&nbsp;: c'est un lieu de communion, de prise de décision et d'intimité. Et ça, vous l'avez bien compris.</p>`,
+    defi:"C'est l'heure du goûter, l'occasion de faire un petit geste d'amour à l'autre. Préparez-lui le goûter du jour et apportez-le-lui sans lui demander ce qui lui ferait plaisir, puis prenez-le ensemble." },
 
   { short:"Photo", emo:"📸", title:"Clic, on s'aime", place:"Étape 4 · Le shooting",
     html:`<p>Il faut des preuves de cette journée historique&nbsp;! Place au shooting photo.</p>
@@ -366,7 +366,7 @@ function openCard(i){
       const f = card.querySelector("#codeForm"), inp = card.querySelector("#codeIn");
       f.addEventListener("submit", e => {
         e.preventDefault();
-        if (norm(inp.value) === norm(CODES[i] || "")){
+        if ([].concat(CODES[i] || []).some(c => norm(c) === norm(inp.value))){
           mem.unlocked = i; save(); hearts(20); toast("Code accepté ! La carte s'ouvre 🔓"); openCard(i); render();
         } else {
           card.querySelector("#err").textContent = "Mauvais code… Essayez encore 😉";
