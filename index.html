@@ -171,7 +171,7 @@
       <svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="20" fill="none" stroke="#7a5a43" stroke-width="1.5"/><circle cx="22" cy="22" r="15" fill="none" stroke="#c8963e" stroke-width="1" stroke-dasharray="2 3"/><path d="M22 6 L26 22 L22 38 L18 22Z" fill="#b3263a"/><path d="M22 22 L26 22 L22 38Z" fill="#7d1426"/><circle cx="22" cy="22" r="2.4" fill="#f3e6cf"/></svg>
     </button>
     <h2>La carte au trésor</h2>
-    <p>Sept étapes, deux témoins, un seul cœur</p>
+    <p>Sept étapes, deux complices et un seul cœur</p>
   </header>
 
   <div class="status" id="status"></div>
@@ -348,7 +348,7 @@ function renderList(){
   const pct = Math.round(mem.done / N * 100);
   document.getElementById("bar").style.width = pct + "%";
   const status = document.getElementById("status"), hint = document.getElementById("hint");
-  if (mem.done >= N){ status.innerHTML = "<b>Cœur bouclé !</b> Toutes les étapes sont relevées."; hint.textContent = "Bravo les témoins ! 💍"; }
+  if (mem.done >= N){ status.innerHTML = "<b>Cœur bouclé !</b> Toutes les étapes sont relevées."; hint.textContent = "Longue vie à votre union ! 💍"; }
   else if (stateOf(mem.done) === "locked"){ status.innerHTML = `<b>${mem.done}</b> étape${mem.done > 1 ? "s" : ""} sur ${N} · prochaine carte verrouillée 🔑`; hint.textContent = "Touchez le cadenas et entrez le code secret pour ouvrir la carte suivante"; }
   else { status.innerHTML = `<b>${mem.done}</b> étape${mem.done > 1 ? "s" : ""} sur ${N} · ${pct}&nbsp;% du cœur parcouru`; hint.textContent = "Touchez le point doré pour découvrir votre prochaine carte"; }
 }
